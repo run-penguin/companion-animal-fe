@@ -1,0 +1,42 @@
+html,
+body {
+  margin: 0;
+  width: 100%;
+  background-color: rgb(246, 246, 246);
+  display: flex;
+}
+
+#root {
+  background-color: white;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+  height: 100%;
+  box-shadow: rgba(100, 100, 100, 0.2) 0px 0px 29px 0px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#root select {
+  padding: 5px 10px;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+#root .radio-wrap {
+  display: flex;
+  gap: 5px;
+}
+
+#root .radio-wrap label,
+#root .radio-wrap input[type="radio"] {
+  cursor: pointer;
+}
+
+#root input[type="radio"] {
+}

@@ -1,0 +1,11 @@
+.search-bar {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.search-bar select {
+  width: 150px;
+}

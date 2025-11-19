@@ -3,12 +3,12 @@ import { AxiosError, type AxiosResponse } from "axios";
 
 type RequestFn<T> = (params?: T) => Promise<AxiosResponse>;
 
-const useAxios = <T = void>(requestFn: RequestFn<T>, params?: T) => {
+const useAxios = <T = void>(requestFn: RequestFn<T>) => {
   const [response, setResponse] = useState<AxiosResponse>();
   const [error, setError] = useState<AxiosError>();
   const [isLoading, setIsLoading] = useState(false);
 
-  const sendRequest = async () => {
+  const sendRequest = async (params?: T) => {
     setResponse(undefined);
     setError(undefined);
     setIsLoading(true);

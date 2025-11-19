@@ -8,6 +8,8 @@ const instance = axios.create({
 
 const api = {
   getSidoList: () => instance.get("/loss/sido"),
+  getSigunguList: (sidoCode?: string) =>
+    instance.get(`/loss/sigungu?upperCode=${sidoCode}`),
 };
 
 export default api;
