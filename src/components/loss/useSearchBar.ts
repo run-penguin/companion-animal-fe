@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
+import { kindList } from "./SearchBar.types";
 import useAxios from "../../hooks/useAxios";
 import api from "../../api/axios";
-import { kindList } from "../../components/loss/SearchBar.types";
 
 export const useSearchBar = () => {
   const [sidoCode, setSidoCode] = useState("");
@@ -16,7 +16,7 @@ export const useSearchBar = () => {
   );
 
   useEffect(() => {
-    getSidoList();
+    getSidoList().then(() => {});
   }, []);
 
   const onChangeSido = async (e: React.ChangeEvent<HTMLSelectElement>) => {

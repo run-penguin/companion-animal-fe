@@ -1,6 +1,6 @@
 import Button from "../Button";
 import { BUTTON_TYPE } from "../../util/constants.ts";
-import { useSearchBar } from "../../hooks/loss/useSearchBar.ts";
+import { useSearchBar } from "./useSearchBar.ts";
 import { kindList, type Sido, type Sigungu } from "./SearchBar.types.ts";
 
 import "./SearchBar.css";
