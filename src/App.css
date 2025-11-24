@@ -4,33 +4,34 @@ body {
   width: 100%;
   background-color: rgb(246, 246, 246);
   display: flex;
+  font-size: 10px;
 }
 
 #root {
   background-color: white;
-  max-width: 600px;
+  max-width: 60rem;
   width: 100%;
   margin: 0 auto;
   min-height: 100vh;
   height: 100%;
-  box-shadow: rgba(100, 100, 100, 0.2) 0px 0px 29px 0px;
-  padding: 20px;
+  box-shadow: rgba(100, 100, 100, 0.2) 0 0 2.9rem 0;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1rem;
 }
 
 #root select {
-  padding: 5px 10px;
-  border: 1px solid #dbdbdb;
-  border-radius: 5px;
-  font-size: 15px;
+  padding: 0.5rem 1rem;
+  border: 0.1rem solid #dbdbdb;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
   cursor: pointer;
 }
 
 #root .radio-wrap {
   display: flex;
-  gap: 5px;
+  gap: 0.5rem;
 }
 
 #root .radio-wrap label,
@@ -38,5 +39,6 @@ body {
   cursor: pointer;
 }
 
-#root input[type="radio"] {
+#root label {
+  font-size: 1.5rem;
 }

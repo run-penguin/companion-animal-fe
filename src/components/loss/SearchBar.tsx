@@ -19,23 +19,25 @@ const SearchBar = () => {
 
   return (
     <div className="search-bar">
-      <select onChange={onChangeSido} value={sidoCode}>
-        <option value="">시/도</option>
-        {sidoList?.map((item: Sido) => (
-          <option key={item.orgCd} value={item.orgCd}>
-            {item.orgdownNm}
-          </option>
-        ))}
-      </select>
+      <div className="select-wrapper">
+        <select onChange={onChangeSido} value={sidoCode}>
+          <option value="">시/도</option>
+          {sidoList?.map((item: Sido) => (
+            <option key={item.orgCd} value={item.orgCd}>
+              {item.orgdownNm}
+            </option>
+          ))}
+        </select>
 
-      <select onChange={onChangeSigungu} value={sigunguCode}>
-        <option value="">시/군/구</option>
-        {sigunguList?.map((item: Sigungu) => (
-          <option key={item.orgCd} value={item.orgCd}>
-            {item.orgdownNm}
-          </option>
-        ))}
-      </select>
+        <select onChange={onChangeSigungu} value={sigunguCode}>
+          <option value="">시/군/구</option>
+          {sigunguList?.map((item: Sigungu) => (
+            <option key={item.orgCd} value={item.orgCd}>
+              {item.orgdownNm}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <div className="radio-wrap">
         {kindList.map((item) => (

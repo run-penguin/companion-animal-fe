@@ -1,7 +1,7 @@
 .header {
   font-weight: 600;
-  padding: 10px;
-  font-size: 22px;
+  padding: 1rem;
+  font-size: 2.2rem;
   text-align: center;
-  border-bottom: 1px solid #efefef;
+  border-bottom: 0.1rem solid #efefef;
 }
