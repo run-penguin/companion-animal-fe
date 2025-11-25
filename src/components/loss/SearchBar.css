@@ -4,6 +4,8 @@
   flex-direction: row;
   align-items: center;
   gap: 1rem;
+  width: max-content;
+  margin: 0 auto;
 }
 
 .search-bar select {
