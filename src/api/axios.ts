@@ -6,10 +6,23 @@ const instance = axios.create({
   withCredentials: true,
 });
 
+interface LossListParams {
+  fromDate: string;
+  toDate: string;
+  sidoCode?: string;
+  sigunguCode?: string;
+  selectedKind?: number;
+  page?: number;
+  size?: number;
+}
+
 const api = {
   getSidoList: () => instance.get("/loss/sido"),
   getSigunguList: (sidoCode?: string) =>
-    instance.get(`/loss/sigungu?upperCode=${sidoCode}`),
+    instance.get("/loss/sigungu", {
+      params: { upperCode: sidoCode },
+    }),
+  getLossList: (params: LossListParams) => instance.get("/loss", { params }),
 };
 
 export default api;

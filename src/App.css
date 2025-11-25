@@ -27,15 +27,27 @@ body {
   padding: 0 1rem;
 }
 
-#root select {
+/* select, input */
+#root select,
+#root input {
   padding: 0.6rem 1rem 0.5rem 1rem;
   border: 0.1rem solid #dbdbdb;
   border-radius: 0.5rem;
   font-size: 1.4rem;
-  cursor: pointer;
   font-family: "NanumSquareRound";
 }
+#root select {
+  cursor: pointer;
+}
 
+#root .select-group,
+#root .date-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* radio */
 #root .radio-wrap {
   display: flex;
   gap: 0.5rem;
@@ -46,6 +58,7 @@ body {
   cursor: pointer;
 }
 
+/* label */
 #root label {
   font-size: 1.5rem;
 }

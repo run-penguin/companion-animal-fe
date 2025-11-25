@@ -10,6 +10,8 @@ export type Sigungu = {
 };
 
 export const kindList = [
+  { orgCd: 0, orgdownNm: "전체" },
+
   {
     orgCd: 417000,
     orgdownNm: "개",

@@ -5,7 +5,7 @@ export type ValidationRule = {
   //   minLength?: number;
   //   maxLength?: number;
   //   pattern?: RegExp;
-  //   custom?: (value: any) => boolean;
+  //   custom?: (value: unknown) => boolean;
   message?: string;
 };
 
@@ -16,7 +16,7 @@ export type ValidationResult = {
 
 // 단일 필드 검증
 export const validateField = (
-  value: any,
+  value: unknown,
   rules: ValidationRule
 ): string | null => {
   // 필수 체크
@@ -52,12 +52,13 @@ export const validateField = (
 
 // 여러 필드 검증
 export const validateFields = (
-  values: Record<string, any>,
+  values: Record<string, unknown>,
   rules: Record<string, ValidationRule>
 ): ValidationResult => {
   const errors: Record<string, string> = {};
 
   Object.keys(rules).forEach((field) => {
+    console.log(field);
     const error = validateField(values[field], rules[field]);
     if (error) {
       errors[field] = error;

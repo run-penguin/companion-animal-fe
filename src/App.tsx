@@ -5,6 +5,7 @@ import Home from "./pages/loss/Home";
 import Header from "./components/Header";
 
 import "./App.css";
+import { LossProvider } from "./components/loss/list/LossContext";
 
 function App() {
   const { isLoading } = useLoading();
@@ -17,13 +18,16 @@ function App() {
           <div className="loader"></div>
         </div>
       </div>
-      <Header />
 
-      <div className="wrapper">
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </div>
+      <LossProvider>
+        <Header />
+
+        <div className="wrapper">
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </div>
+      </LossProvider>
     </>
   );
 }
