@@ -1,8 +1,32 @@
 .button {
   border: none;
-  padding: 0.5rem 1.2rem;
+  padding: 0.6rem 1.3rem;
   border-radius: 0.3rem;
   background-color: #eeeeee;
   margin-left: 0.5rem;
   font-size: 1.4rem;
+  cursor: pointer;
+  box-shadow: rgba(100, 100, 100, 0.3) 0.1rem 0.1rem 0.5rem 0;
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.button:hover {
+  background-color: #e2e2e2;
+}
+
+.button.search {
+  border-radius: 1.5rem;
+  background-color: #848dff;
+  color: white;
+}
+.button.search:hover {
+  background-color: #89a4fc;
+}
+.button.search::after {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f002";
+  font-size: 1.2rem;
 }

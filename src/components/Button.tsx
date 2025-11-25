@@ -4,15 +4,16 @@ import "./Button.css";
 
 type ButtonProps = {
   type: keyof typeof BUTTON_TYPE;
+  isText: boolean;
   onClick: () => void;
 };
 
-const Button = ({ type, onClick }: ButtonProps) => {
+const Button = ({ type, isText, onClick }: ButtonProps) => {
   const config = BUTTON_TYPE[type];
 
   return (
     <button className={`button ${config.className}`} onClick={onClick}>
-      {config.text}
+      {isText ? config.text : ""}
     </button>
   );
 };

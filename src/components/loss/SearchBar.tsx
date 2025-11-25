@@ -54,7 +54,11 @@ const SearchBar = () => {
         ))}
       </div>
 
-      <Button type={BUTTON_TYPE.SEARCH.value} onClick={() => {}} />
+      <Button
+        type={BUTTON_TYPE.SEARCH.value}
+        isText={true}
+        onClick={() => {}}
+      />
     </div>
   );
 };
