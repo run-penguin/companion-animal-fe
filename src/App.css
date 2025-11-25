@@ -31,8 +31,9 @@ body {
   padding: 0.5rem 1rem;
   border: 0.1rem solid #dbdbdb;
   border-radius: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   cursor: pointer;
+  font-family: "NanumSquareRound";
 }
 
 #root .radio-wrap {
