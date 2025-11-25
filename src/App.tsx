@@ -19,9 +19,11 @@ function App() {
       </div>
       <Header />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <div className="wrapper">
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </div>
     </>
   );
 }
