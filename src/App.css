@@ -8,6 +8,7 @@ body {
   background-color: rgb(246, 246, 246);
   display: flex;
   font-size: 10px;
+  font-family: "NanumSquareRound";
 }
 
 #root {
