@@ -1,7 +1,15 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { kindList } from "./SearchBar.types";
 import useAxios from "../../hooks/useAxios";
 import api from "../../api/axios";
+import Swal from "sweetalert2";
+import "../../assets/Swal.css";
+import {
+  commonRules,
+  validateField,
+  validateFields,
+  type ValidationRule,
+} from "../../util/validation";
 
 export const useSearchBar = () => {
   const [sidoCode, setSidoCode] = useState("");
@@ -15,10 +23,16 @@ export const useSearchBar = () => {
     api.getSigunguList
   );
 
+  /**
+   * Mounted
+   */
   useEffect(() => {
     getSidoList().then(() => {});
   }, []);
 
+  /**
+   * Events
+   */
   const onChangeSido = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedSido = e.target.value;
 
@@ -39,6 +53,43 @@ export const useSearchBar = () => {
     setSelectedKind(Number(e.target.value));
   };
 
+  const onClickSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const validation = validateFields(
+      { sidoCode, sigunguCode, selectedKind },
+      validationRules
+    );
+
+    const { isValid, errors } = validation;
+
+    if (!isValid) {
+      if (errors) {
+        console.log(errors);
+
+        Swal.fire({
+          // title: "검색",
+          text: errors[Object.keys(errors)[0]],
+        });
+      }
+    }
+  };
+
+  /**
+   * Validation
+   */
+  const validationRules: Record<string, ValidationRule> = {
+    // sideCode: {
+    //   required: true,
+    //   message: "시/도를 선택해주세요.",
+    // },
+    // sigunguCode: {
+    //   required: true,
+    //   message: "시/군/구를 선택해주세요.",
+    // },
+    sidoCode: commonRules.required("시/도를 선택해주세요."),
+    sigunguCode: commonRules.required("시/군/구를 선택해주세요."),
+    selectedKind: commonRules.required("동물 종류를 선택해주세요."),
+  };
+
   return {
     sidoCode,
     sigunguCode,
@@ -48,5 +99,6 @@ export const useSearchBar = () => {
     onChangeSido,
     onChangeSigungu,
     onChangeKind,
+    onClickSearch,
   };
 };

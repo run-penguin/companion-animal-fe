@@ -15,6 +15,7 @@ const SearchBar = () => {
     onChangeSido,
     onChangeSigungu,
     onChangeKind,
+    onClickSearch,
   } = useSearchBar();
 
   return (
@@ -57,7 +58,7 @@ const SearchBar = () => {
       <Button
         type={BUTTON_TYPE.SEARCH.value}
         isText={true}
-        onClick={() => {}}
+        onClick={onClickSearch}
       />
     </div>
   );
