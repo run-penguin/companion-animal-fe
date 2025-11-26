@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:8080/api",
+  // baseURL: "http://localhost:8080/api",
+  baseURL: "https://companion-animal-be.onrender.com:8080",
   headers: { "X-Requested-With": "XMLHttpRequest" }, // 요청 헤더 설정
   withCredentials: true,
 });
