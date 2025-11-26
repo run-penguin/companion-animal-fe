@@ -1,12 +1,56 @@
 import { useLoss } from "./useLoss";
+import "./LossList.css";
+import dayjs from "dayjs";
 
 const LossList = () => {
   const { lossList } = useLoss();
 
   return (
-    <div>
+    <div className="loss-list">
       {lossList.map((pet, idx) => (
-        <div key={idx}>{pet.age}</div>
+        <div key={idx} className="loss-pet">
+          <img src={pet.popfile} />
+
+          <div className="loss-info">
+            <div>접수일</div>
+            <div className="span-3">
+              {dayjs(pet.happenDt).format("YYYY-MM-DD HH:mm")}
+            </div>
+
+            <div>신고자 성명</div>
+            <div>{pet.callName}</div>
+
+            <div>신고자 연락처</div>
+            <div>{pet.callTel}</div>
+
+            <div>분실장소</div>
+            <div className="span-3">{pet.happenAddr}</div>
+
+            <div>분실장소 상세</div>
+            <div className="span-3">{pet.happenAddrDtl}</div>
+
+            <div>주위 건물</div>
+            <div className="span-3">{pet.happenPlace}</div>
+
+            <div>관할지</div>
+            <div className="span-3">{pet.orgNm}</div>
+
+            <div>품종</div>
+            <div>{pet.kindCd}</div>
+
+            <div>색상</div>
+            <div>{pet.colorCd}</div>
+
+            <div>성별</div>
+            <div>{pet.sexCd === "M" ? "수컷" : "암컷"}</div>
+
+            <div>나이</div>
+            <div>{pet.age}</div>
+
+            <div>특징</div>
+            <div className="span-3">{pet.specialMark}</div>
+          </div>
+        </div>
       ))}
     </div>
   );
