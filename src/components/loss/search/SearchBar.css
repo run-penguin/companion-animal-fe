@@ -8,17 +8,86 @@
 }
 
 .search-bar > div {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  align-items: center;
   justify-content: center;
 }
 
-.search-bar select {
-  width: 14rem;
+.search-bar .row {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
 }
+
+.search-bar .row > div {
+  display: flex;
+}
+
+/* .search-bar select {
+  min-width: 14rem;
+} */
 
 .search-bar input[type="radio"] {
   font-size: 1.4rem;
+}
+
+/* 768px 이하 */
+@media (max-width: 768px) {
+  .search-bar {
+    width: 100%;
+    padding: 1rem 0.5rem;
+  }
+
+  .search-bar .row {
+    flex-direction: column;
+  }
+
+  .search-bar .find-region {
+    flex-direction: row;
+  }
+
+  .search-bar .find-date {
+    justify-content: left;
+    gap: 0;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .select-group {
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .search-bar select {
+    width: 100%;
+  }
+
+  .radio-wrap {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .date-group {
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .date-group input[type="date"] {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .date-group span {
+    flex-shrink: 0;
+  }
+
+  .search-bar .button.search {
+    padding: 0.9rem 1.3rem;
+    flex-shrink: 0;
+  }
+  .search-bar .button.search span {
+    display: none;
+  }
 }

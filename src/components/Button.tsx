@@ -13,7 +13,7 @@ const Button = ({ type, isText, onClick }: ButtonProps) => {
 
   return (
     <button className={`button ${config.className}`} onClick={onClick}>
-      {isText ? config.text : ""}
+      <span>{isText ? config.text : ""}</span>
     </button>
   );
 };

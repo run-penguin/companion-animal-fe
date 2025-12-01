@@ -23,8 +23,8 @@ const SearchBar = () => {
 
   return (
     <div className="search-bar">
-      <div>
-        <div className="select-group">
+      <div className="row">
+        <div className="select-group find-region">
           <select onChange={onChangeSido} value={sidoCode}>
             <option value="">시/도 전체</option>
             {sidoList?.map((item: Sido) => (
@@ -44,34 +44,34 @@ const SearchBar = () => {
           </select>
         </div>
 
-        <div className="radio-wrap">
-          {kindList.map((item) => (
-            <label key={item.orgCd}>
-              <input
-                type="radio"
-                value={item.orgCd}
-                name="kind"
-                checked={selectedKind === item.orgCd}
-                onChange={onChangeKind}
-              />
-              {item.orgdownNm}
-            </label>
-          ))}
+        <div className="find-date">
+          <div className="date-group">
+            {/* <label>분실 일자 :</label> */}
+            <input type="date" value={fromDate} onChange={onChangeFromDate} />
+            <span>~</span>
+            <input type="date" value={toDate} onChange={onChangeToDate} />
+          </div>
+          <Button
+            type={BUTTON_TYPE.SEARCH.value}
+            isText={true}
+            onClick={onClickSearch}
+          />
         </div>
       </div>
 
-      <div>
-        <div className="date-group">
-          <label>분실 일자 :</label>
-          <input type="date" value={fromDate} onChange={onChangeFromDate} />
-          <span>~</span>
-          <input type="date" value={toDate} onChange={onChangeToDate} />
-        </div>
-        <Button
-          type={BUTTON_TYPE.SEARCH.value}
-          isText={true}
-          onClick={onClickSearch}
-        />
+      <div className="radio-wrap">
+        {kindList.map((item) => (
+          <label key={item.orgCd}>
+            <input
+              type="radio"
+              value={item.orgCd}
+              name="kind"
+              checked={selectedKind === item.orgCd}
+              onChange={onChangeKind}
+            />
+            {item.orgdownNm}
+          </label>
+        ))}
       </div>
     </div>
   );
