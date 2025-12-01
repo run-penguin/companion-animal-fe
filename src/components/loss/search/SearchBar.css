@@ -21,10 +21,6 @@
   display: flex;
 }
 
-/* .search-bar select {
-  min-width: 14rem;
-} */
-
 .search-bar input[type="radio"] {
   font-size: 1.4rem;
 }

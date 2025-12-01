@@ -39,13 +39,24 @@
   grid-column: span 3;
 }
 
-.loss-list .loss-pet {
-  /* border-radius: 1rem; */
-}
-
 .loss-list .loss-pet img {
   width: 100%;
   max-width: 30rem;
   border-radius: 1rem;
   margin: auto;
+}
+
+@media (max-width: 768px) {
+  .loss-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .loss-list .loss-pet .loss-info {
+    grid-template-columns: 11rem 1fr;
+  }
+
+  .loss-list .loss-pet .loss-info > .span-3 {
+    grid-column: span 1;
+  }
 }
