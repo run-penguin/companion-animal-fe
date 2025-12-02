@@ -14,7 +14,7 @@ const LossList = () => {
               <img
                 src={pet.popfile}
                 onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                  e.currentTarget.src = "/public/no-img-text.png";
+                  e.currentTarget.src = "/no-img-text.png";
                 }}
               />
             </div>
