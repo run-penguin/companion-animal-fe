@@ -29,7 +29,6 @@ body {
 /* select, input */
 #root select,
 #root input {
-  padding: 0.6rem 1rem 0.5rem 1rem;
   border: 0.1rem solid #dbdbdb;
   border-radius: 0.5rem;
   font-size: 1.4rem;
@@ -37,6 +36,11 @@ body {
 }
 #root select {
   cursor: pointer;
+  padding: 0.6rem 1rem 0.5rem 1rem;
+  display: flex;
+}
+#root input {
+  padding: 0.6rem 1rem 0.5rem 1rem;
 }
 
 #root .select-group,

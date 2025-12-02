@@ -1,3 +1,9 @@
+.no-list {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
 .loss-list {
   display: grid;
   grid-template-columns: repeat(2, calc(50% - 0.5rem));

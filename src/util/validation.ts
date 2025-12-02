@@ -58,7 +58,6 @@ export const validateFields = (
   const errors: Record<string, string> = {};
 
   Object.keys(rules).forEach((field) => {
-    console.log(field);
     const error = validateField(values[field], rules[field]);
     if (error) {
       errors[field] = error;
