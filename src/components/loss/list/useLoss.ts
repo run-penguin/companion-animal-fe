@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import LossContext from "./LossContext";
+import LossContext from "../LossContext";
 
 export const useLoss = () => {
   const context = useContext(LossContext);

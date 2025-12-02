@@ -5,7 +5,7 @@ import Home from "./pages/loss/Home";
 import Header from "./components/Header";
 
 import "./App.css";
-import { LossProvider } from "./components/loss/list/LossContext";
+import { LossProvider } from "./components/loss/LossContext";
 
 function App() {
   const { isLoading } = useLoading();
