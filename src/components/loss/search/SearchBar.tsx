@@ -59,9 +59,12 @@ const SearchBar = () => {
         </div>
       </div>
 
-      <div className="radio-wrap">
+      <div className="radio-wrap filter-bar">
         {kindList.map((item) => (
-          <label key={item.orgCd}>
+          <label
+            key={item.orgCd}
+            className={selectedKind === item.orgCd ? "active" : ""}
+          >
             <input
               type="radio"
               value={item.orgCd}

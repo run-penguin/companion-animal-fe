@@ -25,6 +25,33 @@
   font-size: 1.4rem;
 }
 
+/* 필터바 */
+.filter-bar > label {
+  background-color: #efefef;
+  border-radius: 1.5rem;
+  padding: 0.5rem 1.5rem;
+  color: #414141;
+  width: 6rem;
+  text-align: center;
+}
+
+.filter-bar > label.active {
+  background-color: #ff9cb8;
+  color: #ffffff;
+}
+
+.filter-bar > label.active::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 500;
+  content: "\f058";
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+.filter-bar input {
+  display: none;
+}
+
 /* 768px 이하 */
 @media (max-width: 768px) {
   .search-bar {
