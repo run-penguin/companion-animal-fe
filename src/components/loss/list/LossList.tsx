@@ -9,7 +9,14 @@ const LossList = () => {
     <div className="loss-list">
       {lossList.map((pet, idx) => (
         <div key={idx} className="loss-pet">
-          <img src={pet.popfile} />
+          <div className="img-wrap">
+            <img
+              src={pet.popfile}
+              onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                e.currentTarget.src = "/public/no-img-text.png";
+              }}
+            />
+          </div>
 
           <div className="loss-info">
             <div>접수일</div>

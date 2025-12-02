@@ -38,13 +38,6 @@ export const useSearchBar = () => {
   // );
 
   /**
-   * Mounted
-   */
-  useEffect(() => {
-    getSidoList().then(() => {});
-  }, []);
-
-  /**
    * Events
    */
   const onChangeSido = async (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -75,7 +68,7 @@ export const useSearchBar = () => {
     setToDate(e.target.value);
   };
 
-  const onClickSearch = async () => {
+  const getList = async () => {
     const validation = validateFields({ fromDate, toDate }, validationRules);
 
     const { isValid, errors } = validation;
@@ -100,16 +93,10 @@ export const useSearchBar = () => {
       sigunguCode,
       selectedKind,
     });
+  };
 
-    // const res = await getLossList({
-    //   fromDate: strFromDate,
-    //   toDate: strToDate,
-    //   sidoCode: sidoCode,
-    //   sigunguCode: sigunguCode,
-    //   selectedKind: selectedKind,
-    // });
-
-    // console.log(res);
+  const onClickSearch = async () => {
+    await getList();
   };
 
   /**
@@ -130,6 +117,18 @@ export const useSearchBar = () => {
     fromDate: commonRules.required("분실일자를 선택해주세요"),
     toDate: commonRules.required("분실일자를 선택해주세요"),
   };
+
+  /**
+   * Mounted
+   */
+  useEffect(() => {
+    const initialize = async () => {
+      await getSidoList();
+      await getList();
+    };
+
+    initialize();
+  }, []);
 
   return {
     sidoCode,

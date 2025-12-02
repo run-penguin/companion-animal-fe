@@ -46,7 +46,6 @@ const SearchBar = () => {
 
         <div className="find-date">
           <div className="date-group">
-            {/* <label>분실 일자 :</label> */}
             <input type="date" value={fromDate} onChange={onChangeFromDate} />
             <span>~</span>
             <input type="date" value={toDate} onChange={onChangeToDate} />

@@ -39,10 +39,16 @@
   grid-column: span 3;
 }
 
+.loss-list .img-wrap {
+  background-color: #f8f8f8;
+  border-radius: 1rem;
+  text-align: center;
+  flex: 1;
+  display: flex;
+}
 .loss-list .loss-pet img {
   width: 100%;
   max-width: 30rem;
-  border-radius: 1rem;
   margin: auto;
 }
 
