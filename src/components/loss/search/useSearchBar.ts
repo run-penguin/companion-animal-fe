@@ -56,7 +56,7 @@ export const useSearchBar = () => {
     setSigunguCode(selectedSigungu);
   };
 
-  const onChangeKind = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeKind = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedKind(Number(e.target.value));
   };
 
@@ -118,9 +118,6 @@ export const useSearchBar = () => {
     toDate: commonRules.required("분실일자를 선택해주세요"),
   };
 
-  /**
-   * Mounted
-   */
   useEffect(() => {
     const initialize = async () => {
       await getSidoList();
@@ -128,7 +125,15 @@ export const useSearchBar = () => {
     };
 
     initialize();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (selectedKind) {
+      getList();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedKind]);
 
   return {
     sidoCode,
