@@ -34,13 +34,14 @@ type LossContextType = {
   totalCount: number;
   lossList: LossPet[];
   searchLossList: (params: SearchParams) => Promise<void>;
+  setPageNo: (pageNo: number) => void;
 };
 
 const LossContext = createContext<LossContextType | null>(null);
 
 export function LossProvider({ children }: { children: ReactNode }) {
   const [lossList, setLossList] = useState<LossPet[]>([]);
-  const [numOfRows, setNumOfRows] = useState(10);
+  const [numOfRows, setNumOfRows] = useState(2);
   const [pageNo, setPageNo] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
 
@@ -56,7 +57,14 @@ export function LossProvider({ children }: { children: ReactNode }) {
 
   return (
     <LossContext.Provider
-      value={{ numOfRows, pageNo, totalCount, lossList, searchLossList }}
+      value={{
+        lossList,
+        searchLossList,
+        pageNo,
+        setPageNo,
+        numOfRows,
+        totalCount,
+      }}
     >
       {children}
     </LossContext.Provider>

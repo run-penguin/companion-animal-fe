@@ -22,7 +22,7 @@ export const useSearchBar = () => {
   const [toDate, setToDate] = useState(dayjs().format("YYYY-MM-DD"));
 
   // 검색용 함수
-  const { searchLossList } = useLoss();
+  const { searchLossList, pageNo, numOfRows } = useLoss();
 
   /**
    * API - request, response
@@ -33,9 +33,6 @@ export const useSearchBar = () => {
   const { response: sigunguResponse, sendRequest: getSigunguList } = useAxios(
     api.getSigunguList
   );
-  // const { response: lossResponse, sendRequest: getLossList } = useAxios(
-  //   api.getLossList
-  // );
 
   /**
    * Events
@@ -68,7 +65,7 @@ export const useSearchBar = () => {
     setToDate(e.target.value);
   };
 
-  const getList = async () => {
+  const getList = async (page?: number) => {
     const validation = validateFields({ fromDate, toDate }, validationRules);
 
     const { isValid, errors } = validation;
@@ -92,11 +89,13 @@ export const useSearchBar = () => {
       sidoCode,
       sigunguCode,
       selectedKind,
+      numOfRows,
+      pageNo: page ? page : pageNo, // 검색 버튼 클릭 시 1, 그 외 나머지
     });
   };
 
   const onClickSearch = async () => {
-    await getList();
+    await getList(1);
   };
 
   /**
@@ -129,11 +128,11 @@ export const useSearchBar = () => {
   }, []);
 
   useEffect(() => {
-    if (selectedKind) {
+    if (selectedKind || pageNo) {
       getList();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedKind]);
+  }, [selectedKind, pageNo]);
 
   return {
     sidoCode,
