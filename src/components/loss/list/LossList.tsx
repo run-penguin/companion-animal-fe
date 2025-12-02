@@ -12,7 +12,7 @@ const LossList = () => {
           <div key={idx} className="loss-pet">
             <div className="img-wrap">
               <img
-                src={pet.popfile}
+                src={pet.popfile.replace("http://", "https://")}
                 onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                   e.currentTarget.src = "/no-img-text.png";
                 }}
