@@ -1,6 +1,6 @@
-import SearchBar from "../../components/loss/search/SearchBar";
-import LossList from "../../components/loss/list/LossList";
-import NavigationBar from "../../components/loss/pagination/Pagination";
+import SearchBar from "../../components/lost/search/SearchBar";
+import LostList from "../../components/lost/list/LostList";
+import NavigationBar from "../../components/lost/pagination/Pagination";
 import Button from "../../components/Button";
 import { BUTTON_TYPE } from "../../util/constants";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ export default function Home() {
       </div>
       <SearchBar />
       <NavigationBar />
-      <LossList />
+      <LostList />
       <NavigationBar />
     </>
   );

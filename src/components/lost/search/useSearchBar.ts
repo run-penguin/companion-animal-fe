@@ -10,7 +10,7 @@ import {
   validateFields,
   type ValidationRule,
 } from "../../../util/validation";
-import { useLoss } from "../list/useLoss";
+import { useLost } from "../list/useLost";
 
 export const useSearchBar = () => {
   const [sidoCode, setSidoCode] = useState("");
@@ -22,7 +22,7 @@ export const useSearchBar = () => {
   const [toDate, setToDate] = useState(dayjs().format("YYYY-MM-DD"));
 
   // 검색용 함수
-  const { searchLossList, pageNo, numOfRows } = useLoss();
+  const { searchLostList, pageNo, numOfRows } = useLost();
 
   /**
    * API - request, response
@@ -83,7 +83,7 @@ export const useSearchBar = () => {
       return;
     }
 
-    searchLossList({
+    searchLostList({
       fromDate: dayjs(fromDate).format("YYYYMMDD"),
       toDate: dayjs(toDate).format("YYYYMMDD"),
       sidoCode,

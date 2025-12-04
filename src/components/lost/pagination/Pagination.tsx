@@ -1,8 +1,8 @@
-import { useLoss } from "../list/useLoss";
+import { useLost } from "../list/useLost";
 import "./Pagination.css";
 
 const NavigationBar = () => {
-  const { pageNo, setPageNo, numOfRows, totalCount } = useLoss();
+  const { pageNo, setPageNo, numOfRows, totalCount } = useLost();
 
   const totalPage = Math.ceil(totalCount / numOfRows);
 

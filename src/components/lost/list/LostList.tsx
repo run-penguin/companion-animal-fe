@@ -1,15 +1,15 @@
-import { useLoss } from "./useLoss";
-import "./LossList.css";
+import { useLost } from "./useLost";
+import "./LostList.css";
 import dayjs from "dayjs";
 
-const LossList = () => {
-  const { lossList } = useLoss();
+const LostList = () => {
+  const { lostList } = useLost();
 
-  if (Array.isArray(lossList)) {
+  if (Array.isArray(lostList)) {
     return (
-      <div className="loss-list">
-        {lossList.map((pet, idx) => (
-          <div key={idx} className="loss-pet">
+      <div className="lost-list">
+        {lostList.map((pet, idx) => (
+          <div key={idx} className="lost-pet">
             <div className="img-wrap">
               <img
                 src={pet.popfile.replace("http://", "https://")}
@@ -19,7 +19,7 @@ const LossList = () => {
               />
             </div>
 
-            <div className="loss-info">
+            <div className="lost-info">
               <div>접수일</div>
               <div className="span-3">
                 {dayjs(pet.happenDt).format("YYYY-MM-DD HH:mm")}
@@ -71,4 +71,4 @@ const LossList = () => {
   }
 };
 
-export default LossList;
+export default LostList;

@@ -9,7 +9,7 @@ const instance = axios.create({
   timeout: 60000,
 });
 
-interface LossListParams {
+interface LostListParams {
   fromDate: string;
   toDate: string;
   sidoCode?: string;
@@ -20,12 +20,12 @@ interface LossListParams {
 }
 
 const api = {
-  getSidoList: () => instance.get("/loss/sido"),
+  getSidoList: () => instance.get("/lost/sido"),
   getSigunguList: (sidoCode?: string) =>
-    instance.get("/loss/sigungu", {
+    instance.get("/lost/sigungu", {
       params: { upperCode: sidoCode },
     }),
-  getLossList: (params: LossListParams) => instance.get("/loss", { params }),
+  getLostList: (params: LostListParams) => instance.get("/lost", { params }),
 };
 
 export default api;

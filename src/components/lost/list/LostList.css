@@ -4,7 +4,7 @@
   margin-top: 5rem;
 }
 
-.loss-list {
+.lost-list {
   display: grid;
   grid-template-columns: repeat(2, calc(50% - 0.5rem));
   grid-gap: 1rem;
@@ -12,7 +12,7 @@
   padding: 1rem 1rem;
 }
 
-.loss-list .loss-pet {
+.lost-list .lost-pet {
   box-shadow: rgba(100, 100, 100, 0.2) 0 0 1rem 0;
   padding: 1rem;
   border-radius: 1rem;
@@ -21,31 +21,31 @@
   gap: 1rem;
 }
 
-.loss-list .loss-pet .loss-info {
+.lost-list .lost-pet .lost-info {
   display: grid;
   grid-gap: 0.2rem;
   grid-template-columns: 11rem 1fr 11rem 1fr;
 }
 
-.loss-list .loss-pet .loss-info > div {
+.lost-list .lost-pet .lost-info > div {
   padding: 0.7rem;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
 }
 
-.loss-list .loss-pet .loss-info > *:nth-child(odd) {
+.lost-list .lost-pet .lost-info > *:nth-child(odd) {
   background-color: #eeeeee;
   color: #383838;
   font-size: 1.4rem;
   justify-content: center;
 }
 
-.loss-list .loss-pet .loss-info > .span-3 {
+.lost-list .lost-pet .lost-info > .span-3 {
   grid-column: span 3;
 }
 
-.loss-list .img-wrap {
+.lost-list .img-wrap {
   background-color: #f8f8f8;
   border-radius: 0.5rem;
   text-align: center;
@@ -53,23 +53,23 @@
   display: flex;
   overflow: hidden;
 }
-.loss-list .loss-pet img {
+.lost-list .lost-pet img {
   width: 100%;
   max-width: 30rem;
   margin: auto;
 }
 
 @media (max-width: 768px) {
-  .loss-list {
+  .lost-list {
     display: flex;
     flex-direction: column;
   }
 
-  .loss-list .loss-pet .loss-info {
+  .lost-list .lost-pet .lost-info {
     grid-template-columns: 11rem 1fr;
   }
 
-  .loss-list .loss-pet .loss-info > .span-3 {
+  .lost-list .lost-pet .lost-info > .span-3 {
     grid-column: span 1;
   }
 }

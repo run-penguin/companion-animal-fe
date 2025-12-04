@@ -1,7 +1,7 @@
 import { createContext, type ReactNode, useState } from "react";
 import api from "../../api/axios";
 
-type LossPet = {
+type LostPet = {
   callName: string;
   callTel: string;
   happenDt: string;
@@ -28,38 +28,38 @@ type SearchParams = {
   numOfRows: number;
 };
 
-type LossContextType = {
+type LostContextType = {
   numOfRows: number;
   pageNo: number;
   totalCount: number;
-  lossList: LossPet[];
-  searchLossList: (params: SearchParams) => Promise<void>;
+  lostList: LostPet[];
+  searchLostList: (params: SearchParams) => Promise<void>;
   setPageNo: (pageNo: number) => void;
 };
 
-const LossContext = createContext<LossContextType | null>(null);
+const LostContext = createContext<LostContextType | null>(null);
 
-export function LossProvider({ children }: { children: ReactNode }) {
-  const [lossList, setLossList] = useState<LossPet[]>([]);
+export function LostProvider({ children }: { children: ReactNode }) {
+  const [lostList, setLostList] = useState<LostPet[]>([]);
   const [numOfRows, setNumOfRows] = useState(2);
   const [pageNo, setPageNo] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
 
-  const searchLossList = async (params: SearchParams) => {
-    const response = await api.getLossList(params);
+  const searchLostList = async (params: SearchParams) => {
+    const response = await api.getLostList(params);
     const data = response.data;
 
     setNumOfRows(data.numOfRows);
     setPageNo(data.pageNo);
     setTotalCount(data.totalCount);
-    setLossList(data.items.item);
+    setLostList(data.items.item);
   };
 
   return (
-    <LossContext.Provider
+    <LostContext.Provider
       value={{
-        lossList,
-        searchLossList,
+        lostList,
+        searchLostList,
         pageNo,
         setPageNo,
         numOfRows,
@@ -67,8 +67,8 @@ export function LossProvider({ children }: { children: ReactNode }) {
       }}
     >
       {children}
-    </LossContext.Provider>
+    </LostContext.Provider>
   );
 }
 
-export default LossContext;
+export default LostContext;

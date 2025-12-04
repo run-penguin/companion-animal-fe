@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import { useLoading } from "./components/useLoading";
 
-import Home from "./pages/loss/Home";
-import Map from "./pages/loss/Map";
+import Home from "./pages/lost/Home";
+import LostMap from "./pages/lost/LostMap";
 
 import "./App.css";
-import { LossProvider } from "./components/loss/LossContext";
+import { LostProvider } from "./components/lost/LostContext";
 
 function App() {
   const { isLoading } = useLoading();
@@ -19,14 +19,14 @@ function App() {
         </div>
       </div>
 
-      <LossProvider>
+      <LostProvider>
         <div className="wrapper">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/map" element={<Map />} />
+            <Route path="/map" element={<LostMap />} />
           </Routes>
         </div>
-      </LossProvider>
+      </LostProvider>
     </>
   );
 }
