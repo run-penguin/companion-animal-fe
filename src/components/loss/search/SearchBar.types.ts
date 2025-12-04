@@ -21,7 +21,7 @@ export const kindList = [
     orgdownNm: "고양이",
   },
   {
-    orgCd: 4229900,
+    orgCd: 429900,
     orgdownNm: "기타",
   },
 ];
