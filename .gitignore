@@ -26,3 +26,5 @@ package-lock.json
 README.md
 
 .vercel
+.env.development
+.env.localhost
