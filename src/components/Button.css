@@ -17,6 +17,7 @@
   background-color: #e2e2e2;
 }
 
+/* search */
 .button.search {
   border-radius: 1.5rem;
   background-color: #848dff;
@@ -28,6 +29,14 @@
 .button.search::after {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
-  content: "\f002";
   font-size: 1.2rem;
+  content: "\f002";
+}
+
+/* map */
+.button.map::after {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 600;
+  font-size: 1.2rem;
+  content: "\f279";
 }

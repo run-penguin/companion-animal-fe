@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { useLoading } from "./components/useLoading";
 
 import Home from "./pages/loss/Home";
-import Header from "./components/Header";
+import Map from "./pages/loss/Map";
 
 import "./App.css";
 import { LossProvider } from "./components/loss/LossContext";
@@ -20,11 +20,10 @@ function App() {
       </div>
 
       <LossProvider>
-        <Header />
-
         <div className="wrapper">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/" element={<Map />} />
           </Routes>
         </div>
       </LossProvider>

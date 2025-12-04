@@ -4,6 +4,11 @@ export const BUTTON_TYPE = {
     text: "검색",
     className: "search",
   },
+  MAP: {
+    value: "MAP",
+    text: "지도",
+    className: "map",
+  },
 } as const;
 
 export type ButtonTypeValue =
