@@ -9,6 +9,11 @@ export const BUTTON_TYPE = {
     text: "지도",
     className: "map",
   },
+  LIST: {
+    value: "LIST",
+    text: "목록",
+    className: "list",
+  },
 } as const;
 
 export type ButtonTypeValue =

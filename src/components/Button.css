@@ -34,9 +34,17 @@
 }
 
 /* map */
-.button.map::after {
+.button.map::before {
   font-family: "Font Awesome 6 Free";
   font-weight: 600;
   font-size: 1.2rem;
   content: "\f279";
+}
+
+/* list */
+.button.list::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 600;
+  font-size: 1.2rem;
+  content: "\f03a";
 }

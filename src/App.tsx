@@ -23,7 +23,7 @@ function App() {
         <div className="wrapper">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/" element={<Map />} />
+            <Route path="/map" element={<Map />} />
           </Routes>
         </div>
       </LossProvider>
