@@ -1,27 +1,21 @@
-import { useNavigate } from "react-router-dom";
-import Button from "../../components/Button";
-import { BUTTON_TYPE } from "../../util/constants";
-import { Map, MapMarker } from "react-kakao-maps-sdk";
-import "./LostMap.css";
-import { useLost } from "../../components/lost/list/useLost";
 import { useEffect, useState } from "react";
-import { useGeocoder } from "../../hooks/useGeocoder";
+import { useNavigate } from "react-router-dom";
+import { Map, MapMarker } from "react-kakao-maps-sdk";
 
-interface LostAnimal {
-  callName: string;
-  callTel: string;
-  happenDt: string;
-  happenAddr: string;
-  happenPlace: string;
-  orgNm: string;
-  popfile: string;
-  kindCd: string;
-  colorCd: string;
-  sexCd: string;
-  age: string;
-  specialMark: string;
-  lat?: number; // 변환된 좌표 (optional)
-  lng?: number;
+import Button from "../../components/Button";
+import { useLost } from "../../components/lost/list/useLost";
+import { BUTTON_TYPE } from "../../util/constants";
+import { useGeocoder } from "../../hooks/useGeocoder";
+import type { LostPet } from "../../types/common";
+
+import "./LostMap.css";
+
+import dayjs from "dayjs";
+
+interface LostAnimalWithCoords extends LostPet {
+  id: number;
+  lat: number;
+  lng: number;
 }
 
 const LostMap = () => {
@@ -31,49 +25,53 @@ const LostMap = () => {
     navigate("/");
   };
 
-  const { lostList } = useLost();
+  // 목록
+  const { searchLostList, lostList } = useLost();
+
+  // 1. 마운트된 후
+  useEffect(() => {
+    const fromDate = dayjs().add(-1, "month").format("YYYY-MM-DD");
+    const toDate = dayjs().format("YYYY-MM-DD");
+
+    // 검색 후 lostList에 담아줌
+    searchLostList({
+      fromDate: dayjs(fromDate).format("YYYYMMDD"),
+      toDate: dayjs(toDate).format("YYYYMMDD"),
+      pageNo: 1,
+      numOfRows: 1000,
+    });
+  }, []);
+
+  // 2. 리스트가 업데이트 됐을 때
   const { addressToCoords } = useGeocoder();
-  const [animals, setAnimals] = useState<LostAnimal[]>([]);
-  const [selectedAnimal, setSelectedAnimal] = useState<LostAnimal | null>(null);
-  const [mapCenter, setMapCenter] = useState({ lat: 35.3218, lng: 126.9086 }); // 담양 중심
-  const [isConverting, setIsConverting] = useState(true);
+  const [animalList, setAnimalList] = useState<LostAnimalWithCoords[]>([]);
 
   useEffect(() => {
-    const convertedAddrs = async () => {
-      const convertedAnimals = await Promise.all(
-        lostList.map(async (animal) => {
-          try {
-            const coords = await addressToCoords(animal.happenAddr);
-            return {
-              ...animal,
-              lat: coords.lat,
-              lng: coords.lng,
-            };
-          } catch (error) {
-            console.error(`주소 변환 실패: ${animal.happenAddr}`, error);
-            return null;
-          }
+    if (lostList.length === 0) return;
+
+    const convertedList = async () => {
+      const addPositionList = await Promise.all(
+        lostList.map(async (animal, idx) => {
+          const coords = await addressToCoords(animal.happenAddr);
+          return {
+            ...animal,
+            lat: coords?.lat,
+            lng: coords?.lng,
+            id: idx,
+          };
         })
       );
 
-      // 변환 성공한 동물만 필터링
-      const validAnimals = convertedAnimals.filter(
-        (animal): animal is LostAnimal =>
-          animal !== null && animal.lat !== undefined
+      const validPositionList = addPositionList.filter(
+        (animal) =>
+          typeof animal.lat === "number" && typeof animal.lng === "number"
       );
 
-      setAnimals(validAnimals);
-
-      // 첫 번째 동물 위치로 지도 중심 설정
-      if (
-        validAnimals.length > 0 &&
-        validAnimals[0].lat &&
-        validAnimals[0].lng
-      ) {
-        setMapCenter({ lat: validAnimals[0].lat, lng: validAnimals[0].lng });
-      }
+      setAnimalList(validPositionList);
     };
-  });
+
+    convertedList();
+  }, [lostList, addressToCoords]);
 
   return (
     <div>
@@ -93,9 +91,20 @@ const LostMap = () => {
           style={{ width: "100%", height: "500px" }}
           level={3}
         >
-          <MapMarker position={{ lat: 37.5665, lng: 126.978 }}>
-            <div style={{ padding: "5px", color: "#000" }}>여기!</div>
-          </MapMarker>
+          {animalList.map((animal) => (
+            <MapMarker
+              key={animal.id}
+              position={{ lat: animal.lat, lng: animal.lng }}
+            >
+              <div style={{ padding: "5px", color: "#000", minWidth: "150px" }}>
+                <div>
+                  <strong>{animal.kindCd}</strong>
+                </div>
+                <div>{animal.happenPlace}</div>
+                <div style={{ fontSize: "12px" }}>{animal.happenDt}</div>
+              </div>
+            </MapMarker>
+          ))}
         </Map>
       </div>
     </div>
