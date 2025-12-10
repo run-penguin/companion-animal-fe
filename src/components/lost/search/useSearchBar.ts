@@ -12,7 +12,8 @@ import {
 } from "../../../util/validation";
 import { useLost } from "../useLost";
 
-export const useSearchBar = () => {
+export const useSearchBar = (isInitSearch: boolean) => {
+  const [isInitialized, setIsInitialized] = useState(false);
   const [sidoCode, setSidoCode] = useState("");
   const [sigunguCode, setSigunguCode] = useState("");
   const [selectedKind, setSelectedKind] = useState(kindList[0].orgCd);
@@ -120,7 +121,10 @@ export const useSearchBar = () => {
   useEffect(() => {
     const initialize = async () => {
       await getSidoList();
-      await getList();
+
+      if (isInitSearch) await getList();
+
+      setIsInitialized(true); // 초기화 완료. 이제부터 조회할 수 있음
     };
 
     initialize();
@@ -128,6 +132,8 @@ export const useSearchBar = () => {
   }, []);
 
   useEffect(() => {
+    if (!isInitialized) return;
+
     if (selectedKind || pageNo) {
       getList();
     }

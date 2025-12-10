@@ -26,7 +26,7 @@ export default function Map() {
           />
         </div>
 
-        <SearchBar />
+        <SearchBar isInitSearch={false} />
 
         <LostMap />
       </LostProvider>

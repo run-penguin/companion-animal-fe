@@ -4,7 +4,11 @@ import { useSearchBar } from "./useSearchBar.ts";
 import { kindList, type Sido, type Sigungu } from "./SearchBar.types.ts";
 import "./SearchBar.css";
 
-const SearchBar = () => {
+type SearchBarProps = {
+  isInitSearch?: boolean; // 첫 로딩 시 자동 조회 여부
+};
+
+const SearchBar = ({ isInitSearch = true }: SearchBarProps) => {
   const {
     sidoCode,
     sigunguCode,
@@ -19,7 +23,7 @@ const SearchBar = () => {
     onChangeFromDate,
     onChangeToDate,
     onClickSearch,
-  } = useSearchBar();
+  } = useSearchBar(isInitSearch);
 
   return (
     <div className="search-bar">

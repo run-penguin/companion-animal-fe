@@ -26,6 +26,7 @@ const LostContext = createContext<LostContextType | null>(null);
 type LostProviderProps = {
   children: ReactNode;
   numOfRows?: number;
+  isInitSearch?: boolean;
 };
 
 export function LostProvider({
