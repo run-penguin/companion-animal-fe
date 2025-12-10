@@ -1,4 +1,4 @@
-import { useLost } from "./useLost";
+import { useLost } from "../useLost";
 import "./LostList.css";
 import dayjs from "dayjs";
 

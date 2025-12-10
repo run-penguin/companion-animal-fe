@@ -1,4 +1,4 @@
-import { useLost } from "../list/useLost";
+import { useLost } from "../useLost";
 import "./Pagination.css";
 
 const NavigationBar = () => {

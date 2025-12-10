@@ -23,9 +23,17 @@ type LostContextType = {
 
 const LostContext = createContext<LostContextType | null>(null);
 
-export function LostProvider({ children }: { children: ReactNode }) {
+type LostProviderProps = {
+  children: ReactNode;
+  numOfRows?: number;
+};
+
+export function LostProvider({
+  children,
+  numOfRows: initialNumOfRows = 10,
+}: LostProviderProps) {
   const [lostList, setLostList] = useState<LostPet[]>([]);
-  const [numOfRows, setNumOfRows] = useState(2);
+  const [numOfRows, setNumOfRows] = useState(initialNumOfRows);
   const [pageNo, setPageNo] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
 

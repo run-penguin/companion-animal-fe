@@ -10,7 +10,7 @@ import {
   validateFields,
   type ValidationRule,
 } from "../../../util/validation";
-import { useLost } from "../list/useLost";
+import { useLost } from "../useLost";
 
 export const useSearchBar = () => {
   const [sidoCode, setSidoCode] = useState("");
@@ -21,7 +21,7 @@ export const useSearchBar = () => {
   );
   const [toDate, setToDate] = useState(dayjs().format("YYYY-MM-DD"));
 
-  // 검색용 함수
+  // 검색용
   const { searchLostList, pageNo, numOfRows } = useLost();
 
   /**

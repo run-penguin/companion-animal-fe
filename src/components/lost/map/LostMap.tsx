@@ -1,16 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import type { LostPet } from "../../../types/common";
+import { useLost } from "../useLost";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
-
-import Button from "../../components/Button";
-import { useLost } from "../../components/lost/list/useLost";
-import { BUTTON_TYPE } from "../../util/constants";
-import { useGeocoder } from "../../hooks/useGeocoder";
-import type { LostPet } from "../../types/common";
-
-import "./LostMap.css";
-
-import dayjs from "dayjs";
+import { useGeocoder } from "../../../hooks/useGeocoder";
 
 interface LostAnimalWithCoords extends LostPet {
   id: number;
@@ -19,27 +11,21 @@ interface LostAnimalWithCoords extends LostPet {
 }
 
 const LostMap = () => {
-  const navigate = useNavigate();
-
-  const onClickList = () => {
-    navigate("/");
-  };
-
-  // 목록
-  const { searchLostList, lostList } = useLost();
+  const { lostList } = useLost();
+  const [mapCenter, setMapCenter] = useState({ lat: 37.5665, lng: 126.978 });
 
   // 1. 마운트된 후
   useEffect(() => {
-    const fromDate = dayjs().add(-1, "month").format("YYYY-MM-DD");
-    const toDate = dayjs().format("YYYY-MM-DD");
-
-    // 검색 후 lostList에 담아줌
-    searchLostList({
-      fromDate: dayjs(fromDate).format("YYYYMMDD"),
-      toDate: dayjs(toDate).format("YYYYMMDD"),
-      pageNo: 1,
-      numOfRows: 1000,
-    });
+    // 현재 위치 가져오기
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position.coords.latitude, position.coords.longitude);
+        setMapCenter({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
+      });
+    }
   }, []);
 
   // 2. 리스트가 업데이트 됐을 때
@@ -74,22 +60,14 @@ const LostMap = () => {
   }, [lostList, addressToCoords]);
 
   return (
-    <div>
-      <div className="header">
-        <div></div>
-        <label>분실동물 조회</label>
-        <Button
-          type={BUTTON_TYPE.LIST.value}
-          isText={true}
-          onClick={onClickList}
-        />
-      </div>
-
+    <div className="container">
       <div className="map-container">
         <Map
-          center={{ lat: 37.5665, lng: 126.978 }} // 서울 시청
-          style={{ width: "100%", height: "500px" }}
-          level={3}
+          center={mapCenter}
+          className="kakao-map"
+          level={8}
+          isPanto={false}
+          disableDoubleClickZoom={false}
         >
           {animalList.map((animal) => (
             <MapMarker
