@@ -12,8 +12,6 @@ interface LostAnimalWithCoords extends LostPet {
 }
 
 /** todo
- * 조회 결과가 없는 지역에 Marker clear 필요함
- * 날짜 포맷 적절히 변경 필요
  * 자세히 버튼을 추가 -> 자세히를 누르면 큰 화면으로 볼 수 있도록 Modal 추가하면 좋을 듯
  * 디자인 개선
  * 부산으로 조회 -> 부산으로 자동 이동 (각 위치를 수동으로 정해줘야할까?)
@@ -43,9 +41,12 @@ const LostMap = () => {
   const [animalList, setAnimalList] = useState<LostAnimalWithCoords[]>([]);
 
   useEffect(() => {
-    if (!lostList || lostList.length === 0) return;
-
     const convertedList = async () => {
+      if (!lostList || lostList.length === 0) {
+        setAnimalList([]); // 비동기화로 setState가 여러번 호출되지 않게 async 함수 안에서 설정
+        return;
+      }
+
       const addPositionList = await Promise.all(
         lostList.map(async (animal, idx) => {
           const coords = await addressToCoords(animal.happenAddr);
