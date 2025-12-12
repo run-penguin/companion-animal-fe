@@ -4,6 +4,7 @@ import { useLost } from "../useLost";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import { useGeocoder } from "../../../hooks/useGeocoder";
 import dayjs from "dayjs";
+import "./LostMap.css";
 
 interface LostAnimalWithCoords extends LostPet {
   id: number;
@@ -13,7 +14,6 @@ interface LostAnimalWithCoords extends LostPet {
 
 /** todo
  * 자세히 버튼을 추가 -> 자세히를 누르면 큰 화면으로 볼 수 있도록 Modal 추가하면 좋을 듯
- * 디자인 개선
  * 부산으로 조회 -> 부산으로 자동 이동 (각 위치를 수동으로 정해줘야할까?)
  * 목록 조회 후 내 위치와 상관없이 이동함 (처음부터 자동 조회하지 말고 직접 검색 클릭 후 Marker 기준으로 이동한다면?)
  */
@@ -85,16 +85,21 @@ const LostMap = () => {
               key={animal.id}
               position={{ lat: animal.lat, lng: animal.lng }}
             >
-              <div style={{ padding: "5px", color: "#000", minWidth: "150px" }}>
-                <div>
-                  <strong>{animal.kindCd}</strong>
+              <div
+                className="marker-detail"
+                style={{ padding: "5px", color: "#000", minWidth: "150px" }}
+              >
+                <div className="marker-content">
+                  <div>{animal.happenPlace}</div>
+                  <div>{animal.kindCd}</div>
+                  <div>
+                    {animal.happenDt
+                      ? dayjs(animal.happenDt).format("YYYY-MM-DD HH:mm")
+                      : ""}
+                  </div>
                 </div>
-                <div>{animal.happenPlace}</div>
-                <div style={{ fontSize: "12px" }}>
-                  {animal.happenDt
-                    ? dayjs(animal.happenDt).format("YYYY-MM-DD HH:mm")
-                    : ""}
-                </div>
+
+                <div className="marker-tail"></div>
               </div>
             </MapMarker>
           ))}
