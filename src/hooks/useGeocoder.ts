@@ -1,13 +1,20 @@
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 
 interface Coordinates {
   lat: number;
   lng: number;
 }
 
-export const useGeocoder = () => {
-  const [isLoading, setIsLoading] = useState(false);
+interface KakaoGeocoderResult {
+  x: string;
+  y: string;
+  address_name: string;
+  address_type: string;
+}
 
+type KakaoGeocoderStatus = "OK" | "ZERO_RESULT" | "ERROR";
+
+export const useGeocoder = () => {
   const addressToCoords = useCallback(
     (address: string): Promise<Coordinates> => {
       return new Promise((resolve, reject) => {
@@ -18,20 +25,26 @@ export const useGeocoder = () => {
 
         const geocoder = new window.kakao.maps.services.Geocoder();
 
-        geocoder.addressSearch(address, (result: any, status: any) => {
-          if (status === window.kakao.maps.services.Status.OK) {
-            resolve({
-              lat: parseFloat(result[0].y),
-              lng: parseFloat(result[0].x),
-            });
-          } else {
-            reject(new Error(`주소 변환 실패: ${address}`));
+        geocoder.addressSearch(
+          address,
+          (result: KakaoGeocoderResult[], status: KakaoGeocoderStatus) => {
+            if (
+              status === window.kakao.maps.services.Status.OK &&
+              result.length > 0
+            ) {
+              resolve({
+                lat: parseFloat(result[0].y),
+                lng: parseFloat(result[0].x),
+              });
+            } else {
+              reject(new Error(`주소 변환 실패: ${address}`));
+            }
           }
-        });
+        );
       });
     },
     []
   );
 
-  return { addressToCoords, isLoading };
+  return { addressToCoords };
 };
