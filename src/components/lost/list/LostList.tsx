@@ -22,7 +22,7 @@ const LostList = () => {
             <div className="lost-info">
               <div>접수일</div>
               <div className="span-3">
-                {dayjs(pet.happenDt).format("YYYY-MM-DD HH:mm")}
+                {dayjs(pet.happenDt).format("YYYY년 MM월 DD일 HH시 mm분")}
               </div>
 
               <div>신고자 성명</div>

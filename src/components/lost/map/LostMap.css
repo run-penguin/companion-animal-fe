@@ -31,6 +31,17 @@
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+  cursor: pointer;
+}
+
+.marker-detail:hover .marker-content,
+.marker-detail:hover .marker-tail {
+  background-color: #e7e7ff;
+}
+
+.marker-detail:hover .marker-tail {
+  border-top-color: #e7e7ff;
+  border-left-color: #e7e7ff;
 }
 
 .marker-content > div:nth-child(1) {

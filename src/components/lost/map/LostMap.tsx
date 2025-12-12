@@ -4,6 +4,7 @@ import { useLost } from "../useLost";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import { useGeocoder } from "../../../hooks/useGeocoder";
 import dayjs from "dayjs";
+import DetailModal from "./DetailModal";
 import "./LostMap.css";
 
 interface LostAnimalWithCoords extends LostPet {
@@ -70,6 +71,23 @@ const LostMap = () => {
     convertedList();
   }, [lostList, addressToCoords]);
 
+  /**
+   * Modal
+   */
+  const [selectedAnimal, setSelectedAnimal] = useState<LostPet | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const onClickMarker = (animal: LostAnimalWithCoords) => {
+    console.log("click marker");
+    setIsModalOpen(true);
+    setSelectedAnimal(animal);
+  };
+
+  const onClickClose = () => {
+    setIsModalOpen(false);
+    setSelectedAnimal(null);
+  };
+
   return (
     <div className="container">
       <div className="map-container">
@@ -88,6 +106,7 @@ const LostMap = () => {
               <div
                 className="marker-detail"
                 style={{ padding: "5px", color: "#000", minWidth: "150px" }}
+                onClick={() => onClickMarker(animal)}
               >
                 <div className="marker-content">
                   <div>{animal.happenPlace}</div>
@@ -105,6 +124,12 @@ const LostMap = () => {
           ))}
         </Map>
       </div>
+
+      <DetailModal
+        animal={selectedAnimal}
+        isOpen={isModalOpen}
+        onClose={onClickClose}
+      />
     </div>
   );
 };
