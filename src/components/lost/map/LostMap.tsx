@@ -3,6 +3,7 @@ import type { LostPet } from "../../../types/common";
 import { useLost } from "../useLost";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import { useGeocoder } from "../../../hooks/useGeocoder";
+import dayjs from "dayjs";
 
 interface LostAnimalWithCoords extends LostPet {
   id: number;
@@ -88,7 +89,11 @@ const LostMap = () => {
                   <strong>{animal.kindCd}</strong>
                 </div>
                 <div>{animal.happenPlace}</div>
-                <div style={{ fontSize: "12px" }}>{animal.happenDt}</div>
+                <div style={{ fontSize: "12px" }}>
+                  {animal.happenDt
+                    ? dayjs(animal.happenDt).format("YYYY-MM-DD HH:mm")
+                    : ""}
+                </div>
               </div>
             </MapMarker>
           ))}
