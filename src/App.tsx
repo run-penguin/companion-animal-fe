@@ -1,8 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import { useLoading } from "./components/useLoading";
 
-import Home from "./pages/lost/Home";
-import Map from "./pages/lost/Map";
+import Home from "./pages/Home";
+import LostListPage from "./pages/lost/List";
+import LostMapPage from "./pages/lost/Map";
+import RescueListPage from "./pages/rescue/List";
 
 import "./App.css";
 
@@ -21,7 +23,9 @@ function App() {
       <div className="wrapper">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/map" element={<Map />} />
+          <Route path="/lost/list" element={<LostListPage />} />
+          <Route path="/lost/map" element={<LostMapPage />} />
+          <Route path="/rescue/list" element={<RescueListPage />} />
         </Routes>
       </div>
     </>

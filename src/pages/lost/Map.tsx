@@ -10,7 +10,7 @@ export default function Map() {
   const navigate = useNavigate();
 
   const onClickList = () => {
-    navigate("/");
+    navigate("/lost/list");
   };
 
   return (

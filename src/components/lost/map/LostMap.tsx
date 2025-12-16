@@ -13,12 +13,6 @@ interface LostAnimalWithCoords extends LostPet {
   lng: number;
 }
 
-/** todo
- * 자세히 버튼을 추가 -> 자세히를 누르면 큰 화면으로 볼 수 있도록 Modal 추가하면 좋을 듯
- * 부산으로 조회 -> 부산으로 자동 이동 (각 위치를 수동으로 정해줘야할까?)
- * 목록 조회 후 내 위치와 상관없이 이동함 (처음부터 자동 조회하지 말고 직접 검색 클릭 후 Marker 기준으로 이동한다면?)
- */
-
 const LostMap = () => {
   const { lostList } = useLost();
   const [mapCenter, setMapCenter] = useState({ lat: 37.5665, lng: 126.978 });

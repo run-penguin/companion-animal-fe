@@ -1,0 +1,20 @@
+.home-wrap {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: max-content;
+  margin: auto;
+}
+
+.home-wrap > div {
+  padding: 5rem 2rem;
+  font-size: 3rem;
+  background-color: #efefef;
+  border-radius: 1rem;
+  width: 22rem;
+  height: 4rem;
+  margin: auto;
+  text-align: center;
+  cursor: pointer;
+}

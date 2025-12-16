@@ -4,14 +4,14 @@ import NavigationBar from "../../components/lost/pagination/Pagination";
 import Button from "../../components/Button";
 import { BUTTON_TYPE } from "../../util/constants";
 import { useNavigate } from "react-router-dom";
-import "./Home.css";
+import "./List.css";
 import { LostProvider } from "../../components/lost/LostContext";
 
-export default function Home() {
+const List = () => {
   const navigate = useNavigate();
 
   const onClickMap = () => {
-    navigate("/map");
+    navigate("/lost/map");
   };
 
   return (
@@ -33,4 +33,6 @@ export default function Home() {
       </LostProvider>
     </>
   );
-}
+};
+
+export default List;
