@@ -1,4 +1,8 @@
-.header {
+.lost-list-wrap {
+  padding: 1rem 2rem;
+}
+
+.lost-list-wrap .header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

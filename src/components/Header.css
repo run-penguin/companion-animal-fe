@@ -1,0 +1,17 @@
+.main-header {
+  width: 100%;
+  background-image: linear-gradient(to right, #dbe7fd, #ffe3e3);
+  display: flex;
+  justify-content: center;
+  box-shadow: rgba(100, 100, 100, 0.2) 0 0 2.9rem 0;
+}
+
+.main-header > div {
+  font-size: 1.8rem;
+  font-weight: 600;
+  width: 10rem;
+  text-align: center;
+  padding: 1.2rem 1rem;
+  color: rgb(131, 54, 255);
+  cursor: pointer;
+}
